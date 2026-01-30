@@ -39,6 +39,9 @@ export const EventQueue = ({ events, isProcessing, onClearQueue }: EventQueuePro
           <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
             <span className="text-2xl">📋</span>
             Coda Eventi
+            <span className="ml-2 px-2 py-0.5 text-[10px] font-bold bg-event-warning/20 text-event-warning rounded-full uppercase">
+              Passo 2
+            </span>
             {isProcessing && (
               <Loader2 className="w-4 h-4 animate-spin text-primary ml-2" />
             )}
@@ -49,8 +52,7 @@ export const EventQueue = ({ events, isProcessing, onClearQueue }: EventQueuePro
             )}
           </h2>
           <p className="text-sm text-muted-foreground">
-            Gli eventi entrano nella coda e vengono elaborati{' '}
-            <span className="text-accent font-medium">uno alla volta</span> in modo asincrono.
+            <strong className="text-foreground">Cosa succede qui:</strong> Gli eventi aspettano il loro turno, come in fila al supermercato.
           </p>
         </div>
         
@@ -68,12 +70,25 @@ export const EventQueue = ({ events, isProcessing, onClearQueue }: EventQueuePro
         )}
       </div>
 
+      {/* Spiegazione stati */}
+      <div className="flex flex-wrap gap-2 text-xs">
+        <span className="flex items-center gap-1 px-2 py-1 rounded-full bg-muted/50">
+          <Clock className="w-3 h-3" /> In attesa = Aspetta il turno
+        </span>
+        <span className="flex items-center gap-1 px-2 py-1 rounded-full bg-event-warning/20 text-event-warning">
+          <Loader2 className="w-3 h-3" /> Elaborazione = Il sistema sta lavorando
+        </span>
+        <span className="flex items-center gap-1 px-2 py-1 rounded-full bg-event-success/20 text-event-success">
+          <CheckCircle2 className="w-3 h-3" /> Completato = Fatto!
+        </span>
+      </div>
+
       {/* Visualizzazione coda */}
-      <div className="space-y-2 min-h-[120px]">
+      <div className="space-y-2 min-h-[100px]">
         {displayEvents.length === 0 ? (
-          <div className="flex items-center justify-center h-24 border-2 border-dashed border-border rounded-lg">
+          <div className="flex flex-col items-center justify-center h-24 border-2 border-dashed border-border rounded-lg">
             <p className="text-sm text-muted-foreground">
-              La coda è vuota. Genera un evento!
+              👆 La coda è vuota. Clicca un bottone sopra!
             </p>
           </div>
         ) : (
