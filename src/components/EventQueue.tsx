@@ -17,32 +17,55 @@
  */
 
 import { AppEvent, getEventTypeInfo } from '@/types/events';
-import { Clock, Loader2, CheckCircle2 } from 'lucide-react';
+import { Clock, Loader2, CheckCircle2, Trash2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface EventQueueProps {
   events: AppEvent[];
   isProcessing: boolean;
+  onClearQueue?: () => void;
 }
 
-export const EventQueue = ({ events, isProcessing }: EventQueueProps) => {
+export const EventQueue = ({ events, isProcessing, onClearQueue }: EventQueueProps) => {
   // Mostriamo gli ultimi 5 eventi per non sovraccaricare la UI
   const displayEvents = events.slice(-5);
+  const pendingCount = events.filter(e => e.status === 'pending').length;
 
   return (
     <div className="glass-card p-6 space-y-4">
       {/* Header */}
-      <div className="space-y-2">
-        <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
-          <span className="text-2xl">📋</span>
-          Coda Eventi
-          {isProcessing && (
-            <Loader2 className="w-4 h-4 animate-spin text-primary ml-2" />
-          )}
-        </h2>
-        <p className="text-sm text-muted-foreground">
-          Gli eventi entrano nella coda e vengono elaborati{' '}
-          <span className="text-accent font-medium">uno alla volta</span> in modo asincrono.
-        </p>
+      <div className="flex items-start justify-between">
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
+            <span className="text-2xl">📋</span>
+            Coda Eventi
+            {isProcessing && (
+              <Loader2 className="w-4 h-4 animate-spin text-primary ml-2" />
+            )}
+            {pendingCount > 0 && (
+              <span className="ml-2 px-2 py-0.5 text-xs font-bold bg-primary/20 text-primary rounded-full">
+                {pendingCount}
+              </span>
+            )}
+          </h2>
+          <p className="text-sm text-muted-foreground">
+            Gli eventi entrano nella coda e vengono elaborati{' '}
+            <span className="text-accent font-medium">uno alla volta</span> in modo asincrono.
+          </p>
+        </div>
+        
+        {/* Clear Queue Button */}
+        {onClearQueue && events.length > 0 && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onClearQueue}
+            className="text-xs text-event-error hover:text-event-error hover:bg-event-error/10"
+          >
+            <Trash2 className="w-4 h-4 mr-1" />
+            Svuota
+          </Button>
+        )}
       </div>
 
       {/* Visualizzazione coda */}
