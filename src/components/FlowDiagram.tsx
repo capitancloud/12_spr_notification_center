@@ -83,7 +83,7 @@ export const FlowDiagram = ({ isProcessing, hasEvents }: FlowDiagramProps) => {
             <div 
               className={`
                 relative flex flex-col items-center p-4 rounded-xl border-2 transition-all duration-500
-                min-w-[100px]
+                min-w-[100px] overflow-visible
                 ${step.active 
                   ? 'border-primary bg-primary/10 shadow-lg glow-primary scale-105' 
                   : 'border-border bg-card hover:border-muted-foreground/50'
@@ -106,12 +106,12 @@ export const FlowDiagram = ({ isProcessing, hasEvents }: FlowDiagramProps) => {
                 {step.sublabel}
               </p>
 
-              {/* Processing indicator */}
+              {/* Processing indicator - positioned inside top-right */}
               {step.active && (
-                <div className="absolute -top-2 -right-2">
-                  <span className="flex h-4 w-4">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-4 w-4 bg-primary"></span>
+                <div className="absolute top-2 right-2">
+                  <span className="flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-event-success opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-event-success"></span>
                   </span>
                 </div>
               )}
