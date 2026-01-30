@@ -76,16 +76,21 @@ export const EventGenerator = ({ onDispatchEvent, disabled }: EventGeneratorProp
 
   return (
     <div className="glass-card p-6 space-y-4">
-      {/* Header con spiegazione */}
+      {/* Header con spiegazione per principianti */}
       <div className="space-y-2">
         <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
           <span className="text-2xl">🎯</span>
           Generatore Eventi
+          <span className="ml-2 px-2 py-0.5 text-[10px] font-bold bg-event-info/20 text-event-info rounded-full uppercase">
+            Passo 1
+          </span>
         </h2>
         <p className="text-sm text-muted-foreground">
-          Clicca un bottone per simulare un'azione dell'utente.
-          Ogni click genera un <span className="text-primary font-medium">evento</span> che 
-          verrà elaborato in modo <span className="text-accent font-medium">asincrono</span>.
+          <strong className="text-foreground">Cosa fare:</strong> Clicca uno dei bottoni qui sotto per simulare un'azione.
+        </p>
+        <p className="text-xs text-muted-foreground bg-secondary/50 p-2 rounded-lg">
+          💡 <strong>Esempio reale:</strong> In un'app vera, un evento si genera quando 
+          fai login, carichi un file, o completi un acquisto. Qui simuliamo queste azioni!
         </p>
       </div>
 
@@ -126,13 +131,16 @@ export const EventGenerator = ({ onDispatchEvent, disabled }: EventGeneratorProp
         })}
       </div>
 
-      {/* Info box didattico */}
-      <div className="mt-4 p-4 rounded-lg bg-secondary/50 border border-border">
-        <p className="text-xs text-muted-foreground font-mono">
-          <span className="text-event-info">// NOTA DIDATTICA:</span><br />
-          Quando clicchi un bottone, viene chiamata la funzione{' '}
-          <span className="text-primary">dispatchEvent()</span>.<br />
-          Questa funzione crea un oggetto evento e lo inserisce nella coda.
+      {/* Spiegazione semplice */}
+      <div className="mt-4 p-4 rounded-lg bg-primary/5 border border-primary/20">
+        <p className="text-sm text-foreground">
+          <span className="text-lg mr-2">🤔</span>
+          <strong>Cosa succede quando clicchi?</strong>
+        </p>
+        <p className="text-sm text-muted-foreground mt-1">
+          Il tuo click diventa un "evento" - un messaggio che dice al sistema: 
+          "Ehi, è successo qualcosa!". L'evento viene messo in fila (coda) 
+          per essere elaborato.
         </p>
       </div>
     </div>
