@@ -213,15 +213,13 @@ export const useEventSystem = (config: SimulationConfig = DEFAULT_SIMULATION_CON
   /**
    * CLEAR EVENT QUEUE
    * =================
-   * Svuota la coda degli eventi in attesa.
-   * Gli eventi già in elaborazione continueranno.
+   * Svuota completamente la coda e lo storico degli eventi.
+   * Utile per resettare la visualizzazione.
    */
   const clearQueue = useCallback(() => {
-    console.log(`🗑️ [QUEUE] Coda eventi svuotata`);
+    console.log(`🗑️ [QUEUE] Coda eventi svuotata completamente`);
     setEventQueue([]);
-    setEventHistory(prev => 
-      prev.filter(e => e.status === 'completed' || e.status === 'processing')
-    );
+    setEventHistory([]);
     setIsProcessing(false);
   }, []);
 
