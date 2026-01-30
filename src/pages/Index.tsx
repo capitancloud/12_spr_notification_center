@@ -42,6 +42,7 @@ const Index = () => {
     markAsRead,
     markAllAsRead,
     clearAll,
+    clearQueue,
   } = useEventSystem();
 
   return (
@@ -110,7 +111,8 @@ const Index = () => {
             <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
               <EventQueue 
                 events={eventHistory.slice(-5)} 
-                isProcessing={isProcessing} 
+                isProcessing={isProcessing}
+                onClearQueue={clearQueue}
               />
             </div>
 

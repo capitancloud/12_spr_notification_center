@@ -201,13 +201,28 @@ export const useEventSystem = (config: SimulationConfig = DEFAULT_SIMULATION_CON
   }, []);
 
   /**
-   * CLEAR ALL
-   * =========
+   * CLEAR ALL NOTIFICATIONS
+   * =======================
    * Pulisce tutte le notifiche.
    */
   const clearAll = useCallback(() => {
     console.log(`🗑️ [NOTIFICATION] Tutte le notifiche eliminate`);
     setNotifications([]);
+  }, []);
+
+  /**
+   * CLEAR EVENT QUEUE
+   * =================
+   * Svuota la coda degli eventi in attesa.
+   * Gli eventi già in elaborazione continueranno.
+   */
+  const clearQueue = useCallback(() => {
+    console.log(`🗑️ [QUEUE] Coda eventi svuotata`);
+    setEventQueue([]);
+    setEventHistory(prev => 
+      prev.filter(e => e.status === 'completed' || e.status === 'processing')
+    );
+    setIsProcessing(false);
   }, []);
 
   // Conteggio notifiche non lette (per il badge)
@@ -235,5 +250,6 @@ export const useEventSystem = (config: SimulationConfig = DEFAULT_SIMULATION_CON
     markAsRead,
     markAllAsRead,
     clearAll,
+    clearQueue,
   };
 };
