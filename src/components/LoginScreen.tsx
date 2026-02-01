@@ -123,19 +123,6 @@ export const LoginScreen = () => {
               )}
             </Button>
           </form>
-
-          {/* Info didattica */}
-          <div className="mt-6 p-4 bg-muted/50 rounded-lg">
-            <h3 className="text-sm font-medium mb-2 flex items-center gap-2">
-              <span>🔐</span>
-              Come funziona?
-            </h3>
-            <p className="text-xs text-muted-foreground leading-relaxed">
-              Il codice inserito viene trasformato in un <strong>hash</strong> (una stringa cifrata) 
-              e confrontato con l'hash del codice corretto. Questo sistema è più sicuro perché 
-              il codice originale non viene mai salvato!
-            </p>
-          </div>
         </div>
 
         {/* Footer */}
