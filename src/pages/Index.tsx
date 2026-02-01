@@ -13,9 +13,14 @@ import { FlowDiagram } from '@/components/FlowDiagram';
 import { NotificationCenter } from '@/components/NotificationCenter';
 import { BeginnerGuide } from '@/components/BeginnerGuide';
 import { LiveExplanation } from '@/components/LiveExplanation';
-import { Sparkles, BookOpen, GraduationCap } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
+import { Button } from '@/components/ui/button';
+import { Sparkles, BookOpen, GraduationCap, LogOut } from 'lucide-react';
 
 const Index = () => {
+  // Hook per autenticazione
+  const { logout } = useAuth();
+  
   // Hook principale che gestisce tutto il sistema eventi/notifiche
   const {
     eventQueue,
@@ -52,7 +57,7 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Links */}
+            {/* Links & Logout */}
             <div className="flex items-center gap-4">
               <a 
                 href="#guide" 
@@ -61,6 +66,15 @@ const Index = () => {
                 <BookOpen className="w-4 h-4" />
                 <span className="hidden sm:inline">Guida</span>
               </a>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={logout}
+                className="flex items-center gap-2"
+              >
+                <LogOut className="w-4 h-4" />
+                <span className="hidden sm:inline">Esci</span>
+              </Button>
             </div>
           </div>
         </div>
