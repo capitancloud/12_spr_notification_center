@@ -11,7 +11,8 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { GraduationCap, Lock, Eye, EyeOff, AlertCircle, Loader2 } from 'lucide-react';
+import { Lock, Eye, EyeOff, AlertCircle, Loader2 } from 'lucide-react';
+import superProgrammatoreLogo from '@/assets/super-programmatore-logo.png';
 
 export const LoginScreen = () => {
   const { login } = useAuth();
@@ -46,13 +47,13 @@ export const LoginScreen = () => {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        {/* Header */}
+        {/* Header con Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center gradient-border rounded-xl p-0.5 mb-4">
-            <div className="bg-card rounded-xl p-4">
-              <GraduationCap className="w-12 h-12 text-primary" />
-            </div>
-          </div>
+          <img 
+            src={superProgrammatoreLogo} 
+            alt="Super Programmatore" 
+            className="w-48 h-auto mx-auto mb-4"
+          />
           <h1 className="text-2xl font-bold text-gradient mb-2">
             Notification Center
           </h1>
